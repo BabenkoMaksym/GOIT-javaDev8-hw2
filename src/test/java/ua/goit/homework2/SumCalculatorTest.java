@@ -1,5 +1,6 @@
 package ua.goit.homework2;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -37,14 +38,10 @@ class SumCalculatorTest {
         //given
         int num = 0;
         //when
-        boolean thrown = false;
-        try {
-            int actualResult = sumCalculator.sum(num);
-        } catch (IllegalArgumentException e) {
-            thrown = true;
-        };
-        //then
-        assertTrue(thrown);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            sumCalculator.sum(num);
+        });
+
     }
 
     @ParameterizedTest(name = "#{index} - Run test with arguments input={0} expectedResult={1}")
